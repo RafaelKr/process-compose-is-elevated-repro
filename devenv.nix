@@ -39,6 +39,15 @@ in
     };
   };
 
+  scripts = {
+    caddy.exec = ''
+      ${pkgs.caddy}/bin/caddy "$@"
+    '';
+    process-compose.exec = ''
+      ${pkgs-unstable.process-compose}/bin/process-compose "$@"
+    '';
+  };
+
   processes = {
     # required to keep process-compose running when caddy fails
     sleep.exec = "sleep 3600";

@@ -1,0 +1,18 @@
+{
+	# Prevents binding to port 80 which would need root privileges
+	auto_https disable_redirects
+}
+
+https://localhost:8443 {
+	root * public
+
+	encode zstd gzip
+
+	file_server
+
+	log {
+		output stderr
+		format console
+		level ERROR
+	}
+}

@@ -1,0 +1,9 @@
+version: "0.5"
+
+processes:
+  caddy:
+    command: caddy run --config ./Caddyfile
+    is_elevated: true
+  # required to keep process-compose running when caddy fails
+  sleep:
+    command: sleep 3600
