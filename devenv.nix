@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 let
@@ -10,6 +11,7 @@ in
   process-managers.process-compose = {
     # required to use process-compose 1.9.0+
     package = pkgs-unstable.process-compose;
+    settings.processes.caddy.command = pkgs.lib.mkForce (toString (pkgs.writeShellScript "caddy" config.processes.caddy.exec));
   };
 
   services.caddy = {
